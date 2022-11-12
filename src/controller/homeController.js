@@ -3,9 +3,10 @@ export const homeController=(req,res)=>{
     connection.query(
         'SELECT * FROM `users`',
         function(err,results,next){
-            console.log(results)
-            return res.send(results)
+            if(err) throw res.status(400)
+            return res.status(200).json({
+                results
+             })
         }
     )
-    return res.send('hello world')
 }
